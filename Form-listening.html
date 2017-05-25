@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+	<style type="text/css">
+		
+		* {
+			padding: 0;
+			margin: 0;
+			font-size: 14px;
+		}
+
+		.wrap div {
+			padding: 10px;
+			background-color: #bbffaa;
+			border: solid 1px #ccc;
+			margin:10px;
+		}
+
+		.aaron4 {
+			width: 300px;
+			height: 400px;
+			background-color: yellow;
+			border: solid #ccc 1px;
+			color: red;
+		}
+
+	</style>
+    <title>jQuery表单监听</title>
+</head>
+<body>
+	
+	<h1>input textarea与select</h1>
+    <div class="wrap">
+    	<div class="arron">
+    		input:
+    		<input class="target1" type="text" value="监听input的改变" />
+    	</div>
+    	<button id="btc">触发input元素的select事件</button>
+    	<div class="arron2">
+    		select:
+    		<select class="target2">
+    			<option value="option1" selected="selected">option1</option>
+    			<option value="option2">option2</option>
+    		</select>
+    	</div>
+    	<div class="arron3">
+    		textarea:
+    		<textarea class="target3" rows="3" cols="20">多行的文本输入控件</textarea>
+    	</div>
+    </div>
+    	输出结果：
+    <div id="result"></div>
+
+    <div class="aaron4">
+    	123
+    </div>
+    <button class="btn1">点击启动动画</button>
+    
+
+	<script type="text/javascript">
+
+		$(".target1").change(function(e){
+			$("#result").html(e.target.value);
+		});
+
+		$(".target2").change(function(e){
+			$("#result").html(e.target.value);
+		});
+
+		$(".target3").change(function(e){
+			$("#result").html(e.target.value);
+		});
+
+		$(".target3").select(function(e){
+			alert(e.target.value);
+		});
+
+		$("#btc").click(function(){
+			$(".target1").select();
+		});
+
+		$(".btn").click(function(){
+			var $aaron4=$(".aaron4");
+			$aaron4.animate({
+                width  :300,
+                height :300
+            });
+		});
+
+	</script>
+
+</body>
+</html>
