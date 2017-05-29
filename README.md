@@ -25,3 +25,7 @@ demo链接：https://kevin031.github.io/kevin-s-Sample-reels/jQuery-animation.ht
 6.position-effect.html
 一个购物网的定位导航效果，基于jQuery实现
 demo链接：https://kevin031.github.io/kevin-s-Sample-reels/position-effect.html
+
+7.A-tododist
+用Vue框架搭建的一个清单管理工具，在文本框中输入文字按回车生成清单，点击列表标记为完成
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/Gomoku.html
