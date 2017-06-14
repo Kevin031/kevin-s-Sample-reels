@@ -40,4 +40,4 @@ demo链接：https://kevin031.github.io/kevin-s-Sample-reels/gridLayout2.html
 点击验证按钮完成验证
 demo链接：https://kevin031.github.io/kevin-s-Sample-reels/formVal1.html
 失去焦点时自动验证
-demo链接：https://kevin031.github.io/kevin-s-Sample-reels/gridLayout2.html
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/formVal2.html
