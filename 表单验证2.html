@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html charset=utf-8">
+	<title>表单验证1</title>
+	<style type="text/css">
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-size: 16px;
+		}
+
+		.the-form {
+			margin-top: 20px;
+			margin-left: 20px;
+			line-height: 30px;
+		}
+
+		input {
+			font-size: 16px;
+			padding: 5px;
+		}
+
+		#submitButton {
+			height: 30px;
+			width: 60px;
+			background-color: #205AA7;
+			color: white;
+			border: none;
+			line-height: 22px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		label {
+			font-weight: bold;
+			font-size: 12px;
+			visibility: hidden;
+		}
+
+	</style>
+</head>
+<body>
+	<form class="the-form">
+		<table>
+			<tr>
+				<td>用户名：</td><td><input id="userName" class="userName" type="text" size="30" /></td>
+			</tr>
+			<tr><td></td><td><label id="userNameVer">必填，长度为4~16个字符</label></td></tr>
+			<tr>
+				<td>密码：</td><td><input id="password" type="password" size="30" /></td>
+			</tr>
+			<tr><td></td><td><label id="passwordVer">必填，长度为4~16个字符</label></td></tr>
+			<tr>
+				<td>密码确认：</td><td><input id="passwordAgain" type="password" size="30" /></td>
+			</tr>
+			<tr><td></td><td><label id="passwordVerAgain">请确认密码</label></td></tr>
+			<tr>
+				<td>邮箱：</td><td><input id="email" type="text" size="30"></td>
+			</tr>
+			<tr><td></td><td><label id="emailVer">选填，请输入您的常用邮箱</label></td></tr>
+			<tr>
+				<td>手机：</td><td><input id="phoneNum" type="text" size="30"></td>
+			</tr>
+			<tr><td></td><td><label id="phoneNumVer">选填，请输入您的常用手机号</label></td></tr>
+			<tr>
+				<td>
+					<input type="button" value="提交" id="submitButton" />
+				</td>
+			</tr>
+		</table>
+	</form>
+
+
+
+
+
+
+
+	<script type="text/javascript">
+
+	var sum=0;
+	var userName = document.getElementById("userName");
+	var password = document.getElementById("password");
+	var passwordAgain = document.getElementById("passwordAgain");
+	var email = document.getElementById("email");
+	var phoneNum = document.getElementById("phoneNum");
+	var userNameVer = document.getElementById("userNameVer");
+	var passwordVer = document.getElementById("passwordVer");
+	var passwordVerAgain = document.getElementById("passwordVerAgain");
+	var emailVer = document.getElementById("emailVer");
+	var phoneNumVer = document.getElementById("phoneNumVer");
+
+	var EventUtil = {
+		addHandler: function(element,type,handler){
+			if(element.addEventListener){
+				element.addEventListener(type,handler,false);
+			} else if(element.attachEvent){
+				element.attachEvent("on"+type,handler);
+			} else {
+				element["on"+type]=handler;
+			}
+		}
+	}
+
+	EventUtil.addHandler(userName,"focus",function(){
+		userNameVer.style.visibility="visible";
+	});
+
+	EventUtil.addHandler(password,"focus",function(){
+		passwordVer.style.visibility="visible";
+	});
+
+	EventUtil.addHandler(passwordAgain,"focus",function(){
+		passwordVerAgain.style.visibility="visible";
+	});
+
+	EventUtil.addHandler(email,"focus",function(){
+		emailVer.style.visibility="visible";
+	});
+
+	EventUtil.addHandler(phoneNum,"focus",function(){
+		phoneNumVer.style.visibility="visible";
+	});
+
+	EventUtil.addHandler(userName,"focusout",function(){
+		//获取的ID值
+	    var input_name = document.getElementById("userName");
+	    var promptLabel = document.getElementById("userNameVer");
+	    //规则
+
+	    var RegYchinese = /[\u4E00-\u9FA5]/g;//汉字
+	    var regNchinese = /[^\u4E00-\u9FA5\uf900-\ufa2d]/g; //匹配非中文
+	    var Regtrim = /^\s+|\s+$/g;  // 删除字符串两侧的空白字符
+
+        var input_value =  input_name.value;
+        //计算长度
+        var length = input_value.replace(Regtrim,'').replace(RegYchinese, '').length +  input_value.replace(Regtrim,'').replace(regNchinese,'').length;
+        if (length==0){
+            input_name.style.border="1px solid red";
+            promptLabel.innerHTML= '名称不能为空';
+            promptLabel.style.color = "#DE0012";
+        } else if (length>=4&&length<=16){
+            input_name.style.border="1px solid green";
+            promptLabel.innerHTML= '名称格式正确';
+            promptLabel.style.color = "green";
+            sum++;
+            console.log(sum);
+        } else {
+            input_name.style.border="1px solid red";
+            promptLabel.innerHTML= '必填，长度为4~16个字符';
+            promptLabel.style.color = "#DE0012";
+        }
+	    
+	});
+
+	EventUtil.addHandler(password,"focusout",function(){
+		//获取的ID值
+	    var input_name = document.getElementById("password");
+	    var promptLabel = document.getElementById("passwordVer");
+	    //规则
+
+	    var RegYchinese = /[\u4E00-\u9FA5]/g;//汉字
+	    var regNchinese = /[^\u4E00-\u9FA5\uf900-\ufa2d]/g; //匹配非中文
+	    var Regtrim = /^\s+|\s+$/g;  // 删除字符串两侧的空白字符
+
+        var input_value =  input_name.value;
+        //计算长度
+        var length = input_value.replace(Regtrim,'').replace(RegYchinese, '').length +  input_value.replace(Regtrim,'').replace(regNchinese,'').length;
+        if (length==0){
+            input_name.style.border="1px solid red";
+            promptLabel.innerHTML= '密码不能为空';
+            promptLabel.style.color = "#DE0012";
+        } else if (length>=4&&length<=16){
+            input_name.style.border="1px solid green";
+            promptLabel.innerHTML= '密码格式正确';
+            promptLabel.style.color = "green";
+            sum++;
+            console.log(sum);
+        } else {
+            input_name.style.border="1px solid red";
+            promptLabel.innerHTML= '必填，长度为4~16个字符';
+            promptLabel.style.color = "#DE0012";
+        }
+	});
+
+	EventUtil.addHandler(passwordAgain,"focusout",function(){
+		var passwordAgain = document.getElementById("passwordAgain");
+		var password = document.getElementById("password");
+		var promptLabel = document.getElementById("passwordVerAgain");
+		if(passwordAgain.value===password.value){
+			if(passwordAgain.value.length==0){
+				passwordAgain.style.border="1px solid red";
+	            promptLabel.innerHTML= '密码不能为空';
+	            promptLabel.style.color = "#DE0012";
+			} else {
+				passwordAgain.style.border = '1px solid green';
+				promptLabel.innerHTML = '密码一致';
+				promptLabel.style.color = "green";
+				sum++;
+				console.log(sum);
+			}
+		}  else {
+			passwordAgain.style.border = '1px solid red';
+			promptLabel.innerHTML = '请保持两次输入密码一致';
+			promptLabel.style.color = "#DE0012";
+		}
+	});
+
+	EventUtil.addHandler(email,"focusout",function(){
+		var email = document.getElementById("email");
+		var ver;
+		for(i=0;i<email.value.length;i++){
+			if(email.value[i]=="@"){
+				ver = 1;
+				break;
+			} else {
+				ver = 0;
+			}
+		}
+		var promptLabel = document.getElementById("emailVer");
+		if(ver==0||email.value.length==0){
+			email.style.border = '1px solid red';
+			promptLabel.innerHTML = '邮箱格式错误';
+			promptLabel.style.color = "#DE0012";
+		} else {
+			email.style.border = '1px solid green';
+			promptLabel.innerHTML = '邮箱格式正确';
+			promptLabel.style.color = "green";
+		}
+	});
+
+	EventUtil.addHandler(phoneNum,"focusout",function(){
+		var phoneNum = document.getElementById("phoneNum");
+		var promptLabel = document.getElementById("phoneNumVer");
+		if(phoneNum.value.length==11){
+			phoneNum.style.border = '1px solid green';
+			promptLabel.innerHTML = '手机号码格式正确';
+			promptLabel.style.color = "green";
+		} else {
+			phoneNum.style.border = '1px solid red';
+			promptLabel.innerHTML = '手机号码格式错误';
+			promptLabel.style.color = "#DE0012";
+		}
+	});
+
+	
+	if(sum==3){
+		document.getElementById("submitButton").setAttribute("type","submit");
+	}
+
+/*
+	   //获取的ID值
+	    var input_name = document.getElementById("uesrName");
+	    var Btn = document.getElementById("userNameButton");
+	    var promptLabel = document.getElementById("label1");
+	    //规则
+
+	    var RegYchinese = /[\u4E00-\u9FA5]/g;//汉字
+	    var regNchinese = /[^\u4E00-\u9FA5\uf900-\ufa2d]/g; //匹配非中文
+	    var Regtrim = /^\s+|\s+$/g;  // 删除字符串两侧的空白字符
+
+	    function formSubmit() {
+	    	console.log(length);
+	        var input_value =  input_name.value;
+	        //计算长度
+	        var length = input_value.replace(Regtrim,'').replace(RegYchinese, '').length +  input_value.replace(Regtrim,'').replace(regNchinese,'').length;
+	        if (length==0){
+	            input_name.style.border="1px solid red";
+	            promptLabel.innerHTML= '名称不能为空';
+	            promptLabel.style.color = "#DE0012";
+	        } else if (length>=4&&length<=16){
+	            input_name.style.border="1px solid green";
+	            promptLabel.innerHTML= '名称格式正确';
+	            promptLabel.style.color = "green";
+	        } else {
+	            input_name.style.border="1px solid red";
+	            promptLabel.innerHTML= '必填，长度为4~16个字符';
+	            promptLabel.style.color = "#DE0012";
+	        }
+	    }
+*/
+	</script>
+
+</body> 
+</html>
