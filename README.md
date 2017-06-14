@@ -38,6 +38,6 @@ demo链接：https://kevin031.github.io/kevin-s-Sample-reels/gridLayout2.html
 
 9.表单验证
 点击验证按钮完成验证
-demo链接：https://kevin031.github.io/kevin-s-Sample-reels/formVal1.html
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/FormVal1.html
 失去焦点时自动验证
-demo链接：https://kevin031.github.io/kevin-s-Sample-reels/formVal2.html
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/FormVal2.html
