@@ -1,4 +1,4 @@
-# kevin-s-Sample-reels
+﻿# kevin-s-Sample-reels
 
 对照如下：
 
@@ -29,3 +29,15 @@ demo链接：https://kevin031.github.io/kevin-s-Sample-reels/position-effect.htm
 7.A-tododist
 用Vue框架搭建的一个清单管理工具，在文本框中输入文字按回车生成清单，点击列表标记为完成
 demo链接：https://kevin031.github.io/kevin-s-Sample-reels/A-todolist/index.html
+
+8.html与css实现栅格布局
+对不同尺寸屏幕采取不同的布局方案
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/A-todolist/gridLayout1.html
+对小屏幕尺寸采取100%铺满的方式
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/A-todolist/gridLayout2.html
+
+9.表单验证
+点击验证按钮完成验证
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/A-todolist/formVal1.html
+失去焦点时自动验证
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/A-todolist/gridLayout2.html
