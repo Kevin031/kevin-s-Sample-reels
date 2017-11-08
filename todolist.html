@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset:utf-8">
+    <title>my first VUE test</title>
+    <script src="Vue.js/vue.js"></script>
+    <style type="text/css">
+    
+        body {
+            font-family: "微软雅黑";
+            font-size: 14px;
+        }
+
+        input {
+            font-size: 14px;
+        }
+
+        body, ul, div, html {
+            padding: 0;
+            margin: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .main {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        li {
+            list-style-type: none;
+            line-height: 40px;
+            position: relative;
+            border: 1px solid transparent;
+            padding: 0 20px;
+        }
+
+        li .type-span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            margin: 14px 10px 0 0;
+            float: left;
+            cursor: pointer;
+        }
+
+        li .close {
+            position: absolute;
+            color: #f00;
+            font-size: 20px;
+            line-height: 40px;
+            height: 40px;
+            right: 20px;
+            cursor: pointer;
+            display: none;
+            top: 0;
+        }
+
+        li:hover {
+            border: 1px solid #09f;
+        }
+
+        li:hover .close {
+            display: block;
+        }
+
+        li .text-keyword {
+            height: 40px;
+            padding-left: 10px;
+            box-sizing: border-box;
+            margin-left: 10px;
+            width: 80%;
+            display: none;
+        }
+
+        .text-keyword {
+            box-sizing: border-box
+            ;width: 100%;
+            height: 40px;
+            padding-left: 10px;
+            outline: none;
+        }
+
+        li .status-end {
+            background: #09f;
+        }
+
+        li div {
+            display: block;
+        }
+
+        li.eidting div {
+            display: none;
+        }
+
+        li .text2 {
+            height: 40px;
+            padding-left: 10px;
+            box-sizing: border-box;
+            margin-left: 10px;
+            width: 80%;
+            display: none;
+        }
+
+        li.eidting .text2 {
+            display: block;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="app" class="main">
+        <h2>目标清单</h2>
+        <div class="list">
+            <h3>添加目标</h3>
+            <input type="text" class="text-keyword" placeholder="输入目标后，按回车确认" v-on:keyup.13='addList' v-model="addText" />
+            <p>共有{{prolist.length}}个目标，{{noend==0?"全部完成了":'已完成'+(prolist.length-noend)+'，还有'+noend+'条未完成'}}</p>
+            <p>
+                <input type="radio" name="chooseType" checked="true" v-on:click="chooseList(1)" /><label>所有目标</label>
+                <input type="radio" name="chooseType" v-on:click="chooseList(2)" /><label>已完成目标</label>
+                <input type="radio" name="chooseType" v-on:click="chooseList(3)" /><label>未完成目标</label>
+            </p>
+        </div>
+        <ul>
+            <li class="li1" v-for="(list,index) in newList" v-bind:class="{'eidting':curIndex===index}">
+                <div>
+                    <span class="type-span" v-on:click="list.status=!list.status" v-bind:class="{'status-end':list.status}"></span>
+                    <span v-on:dblclick="curIndex=index">{{list.name}}</span>
+                    <span class="close" v-on:click="deleteList(index)">×</span>
+                </div>
+                <input type="text" class="text2" v-model="list.name" v-on:keyup.esc="cancelEdit(list)" v-on:blur="edited" v-on:focus="editBefore(list.name)" v-on:keyup.enter="edited" v-focus />
+            </li>
+        </ul>
+    </div>
+
+    <script>
+
+        new Vue({
+            el: "#app",
+            data: {
+                addText: '',
+                //name-名称， status-完成状态
+                prolist: [
+                    {
+                        name: "HTML5",
+                        status: false
+                    },
+                    {
+                        name: "CSS3",
+                        status: false
+                    },
+                    {
+                        name: "vue",
+                        status: false
+                    },
+                    {
+                        name: "react",
+                        status: false
+                    }
+                ],
+                newList: [],
+                curIndex: '',
+                beforeEditText: ""
+            },
+            computed: {
+                noend: function() {
+                    return this.prolist.filter(function(item){
+                        return !item.status;
+                    }).length;
+                }
+            },
+            methods: {
+                addList () {
+                    //添加进来默认status=false，就是未完成状态
+                    this.prolist.push({
+                        name: this.addText,
+                        status: false
+                    });
+                    //添加后，清空addtext
+                    this.addText = "";
+                },
+                deleteList (index) {
+                    //根据索引，删除数组某一项
+                    this.prolist.splice(index,1);
+                    this.newList = this.prolist;
+                },
+                chooseList (type) {
+                    //type=1时，选择所有目标
+                    //type=2时，选择所有已完成目标
+                    //type=3时，选择所有未完成目标
+                    switch (type) {
+                        case 1:
+                            this.newList = this.prolist;
+                            break;
+                        case 2:
+                            this.newList = this.prolist.filter(function(item){
+                                return item.status;
+                            });
+                            break;
+                        case 3:
+                            this.newList = this.prolist.filter(function(item){
+                                return !item.status;
+                            });
+                            break;
+                    }
+                },
+                //修改前
+                editBefore (name) {
+                    //先记录当前项，起备份作用
+                    this.beforeEditText = name;
+                },
+                //修改完成后
+                edited () {
+                    //修改完成后设置curInde=""隐藏输入框
+                    this.curIndex = "";
+                },
+                //取消修改
+                cancelEdit (val) {
+                    //恢复原来的值
+                    val.name = this.beforeEditText;
+                }
+            },
+            mounted () {
+                this.newList = this.prolist;
+                this.curIndex = "";
+            },
+            directives: {
+                "focus": {
+                    update (el) {
+                        el.focus();
+                    }
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

@@ -41,3 +41,13 @@ demo链接：https://kevin031.github.io/kevin-s-Sample-reels/gridLayout2.html
 demo链接：https://kevin031.github.io/kevin-s-Sample-reels/FormVal1.html
 失去焦点时自动验证
 demo链接：https://kevin031.github.io/kevin-s-Sample-reels/FormVal2.html
+
+10.vue实现计算价格的购物车
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/add-the-price.html
+
+11.vue实现todolist实例
+一个html文件实现的小demo
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/todolist.html
+
+12.vue实现简单选项卡切换
+demo链接：https://kevin031.github.io/kevin-s-Sample-reels/tab-list.html

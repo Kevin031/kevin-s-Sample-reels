@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset:utf-8">
+    <title>my first VUE test</title>
+    <script src="Vue.js/vue.js"></script>
+    <style type="text/css">
+    
+        body {
+            font-family: "Microsoft YaHei";
+        }
+
+        #tab {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        .tab-tit {
+            font-size: 0;
+            width: 600px;
+        }
+
+        .tab-tit a {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            width: 25%;
+            text-align: center;
+            background: #ccc;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .tab-tit .cur {
+            background: #09f;
+            color: #fff;
+        }
+
+        .tab-con div {
+            border: 1px solid #ccc;
+            height: 400px;
+            padding-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="tab">
+        <div class="tab-tit">
+            <a href="javascript:;" v-on:mouseenter="curId=0" v-bind:class="{'cur':curId===0}">html</a>
+            <a href="javascript:;" v-on:mouseenter="curId=1" v-bind:class="{'cur':curId===1}">css</a>
+            <a href="javascript:;" v-on:mouseenter="curId=2" v-bind:class="{'cur':curId===2}">javascript</a>
+            <a href="javascript:;" v-on:mouseenter="curId=3" v-bind:class="{'cur':curId===3}">vue</a>
+        </div>
+        <div class="tab-con">
+            <div v-show="curId===0">
+                html<br />
+            </div>
+            <div v-show="curId===1">
+                css<br />
+            </div>
+            <div v-show="curId===2">
+                javascript<br />
+            </div>
+            <div v-show="curId===3">
+                vue<br />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#tab',
+            data: {
+                curId: 0
+            },
+            computed: {},
+            methods: {},
+            mounted: function() {
+
+            }
+        })
+    </script>
+</body>
+</html>
